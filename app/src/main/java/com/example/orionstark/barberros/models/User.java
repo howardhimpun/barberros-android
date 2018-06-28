@@ -6,6 +6,7 @@ public class User {
     String no_telp;
     String email;
     String token;
+    public static String usernames= null;
 
     public User(String username, String full_name, String no_telp, String email, String token) {
         this.username = username;

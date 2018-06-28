@@ -15,6 +15,7 @@
             android:textColor="@color/colorPrimary"
             android:text="Confirm your PIN"/>
         <EditText
+            android:id="@+id/new_password_field"
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="45dp"
@@ -26,6 +27,7 @@
             android:drawableLeft="@drawable/security"
             android:background="@drawable/border"/>
         <EditText
+            android:id="@+id/confirm_pass_field"
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="45dp"

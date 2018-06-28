@@ -23,12 +23,6 @@ android:padding="10dp">
     android:layout_height="wrap_content"
     android:text="____________________________________________________________"
     android:textSize="12sp"/>
-<android.support.v7.widget.RecyclerView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:background="@color/cardview_light_background"
-    android:id="@+id/rvFav">
     <ImageView
         android:layout_width="60dp"
         android:layout_height="60dp"
@@ -51,10 +45,10 @@ android:padding="10dp">
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:id="@+id/fav_barber"
+
             />
-        android:src="@drawable/fav_barber"
+
     </LinearLayout>
-</android.support.v7.widget.RecyclerView>
 <TextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"

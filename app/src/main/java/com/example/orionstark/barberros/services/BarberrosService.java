@@ -172,7 +172,7 @@ public class BarberrosService {
                             byte[] decodedString = Base64.decode(data.getJSONObject(i).getString("image"), Base64.DEFAULT);
                             Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
                             for ( int j = 0; j < data.getJSONObject(i).getJSONArray("services").length(); j++ ) {
-                                services_tmp.add(data.getJSONObject(j).getJSONArray("services").getString(i));
+                                services_tmp.add(data.getJSONObject(i).getJSONArray("services").getString(j));
                             }
                             for ( int k = 0; k < data.getJSONObject(i).getJSONArray("times").length(); k++ ) {
                                 times_tmp.add(data.getJSONObject(i).getJSONArray("times").getString(k));
@@ -297,6 +297,178 @@ public class BarberrosService {
 
         ServiceSingleton.getInstance(context).addRequestToQueue(request, TagList.GET_FAVORITES_TAG);
     }
+
+    public static void changePassword(String username, String password, Context context, final ServiceCallback callback) throws JSONException {
+        JSONObject params = new JSONObject();
+        params.put("username", username);
+        params.put("new_password", password);
+        JsonObjectRequest request = new JsonObjectRequest(
+                Request.Method.POST, UrlList.changePassword_url, params, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    if ( response.getBoolean("status") ) {
+                        callback.onSucceed(response.getString("message"));
+                    } else {
+                        callback.onError(response.getString("message"));
+                    }
+                } catch (JSONException e) {
+                    callback.onError("Error");
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                try {
+                    if ( error.networkResponse.data != null ) {
+                        try {
+                            String string = new String( error.networkResponse.data, HttpHeaderParser.parseCharset( error.networkResponse.headers));
+                            JSONObject json = new JSONObject(string);
+                            if ( json.getString("message") != null ) {
+                                callback.onError(json.getString("message"));
+                            } else {
+                                callback.onError("Something went wrong");
+                            }
+                        } catch (Exception e) {
+                            callback.onError("Slow Connection");
+                        }
+                    } else {
+                        if ( error.getMessage() != null ) {
+                            callback.onError(error.getMessage());
+                        } else {
+                            if ( error.getLocalizedMessage() != null ) {
+                                callback.onError(error.getLocalizedMessage());
+                            } else {
+                                callback.onError("Slow Connection");
+                            }
+                        }
+                    }
+                } catch (Exception e) {
+                    callback.onError("Slow Connection");
+                }
+            }
+        });
+        ServiceSingleton.getInstance(context).addRequestToQueue(request, TagList.CHANGE_PASS_TAG);
+    }
+
+    public static void checkSecPass(String username, String password, Context context, final ServiceCallback callback) throws JSONException {
+        JSONObject params = new JSONObject();
+        params.put("username", username);
+        params.put("sec_pass", password);
+        JsonObjectRequest request = new JsonObjectRequest(
+                Request.Method.POST, UrlList.checkSecPass_url, params, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    if ( response.getBoolean("status") ) {
+                        callback.onSucceed(response.getString("message"));
+                    } else {
+                        callback.onError(response.getString("message"));
+                    }
+                } catch (JSONException e) {
+                    callback.onError("Error");
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                try {
+                    if ( error.networkResponse.data != null ) {
+                        try {
+                            String string = new String( error.networkResponse.data, HttpHeaderParser.parseCharset( error.networkResponse.headers));
+                            JSONObject json = new JSONObject(string);
+                            if ( json.getString("message") != null ) {
+                                callback.onError(json.getString("message"));
+                            } else {
+                                callback.onError("Something went wrong");
+                            }
+                        } catch (Exception e) {
+                            callback.onError("Slow Connection");
+                        }
+                    } else {
+                        if ( error.getMessage() != null ) {
+                            callback.onError(error.getMessage());
+                        } else {
+                            if ( error.getLocalizedMessage() != null ) {
+                                callback.onError(error.getLocalizedMessage());
+                            } else {
+                                callback.onError("Slow Connection");
+                            }
+                        }
+                    }
+                } catch (Exception e) {
+                    callback.onError("Slow Connection");
+                }
+            }
+        });
+        ServiceSingleton.getInstance(context).addRequestToQueue(request, TagList.CHANGE_PASS_TAG);
+    }
+
+//    public static void getBarberInfo(final String token, String barbername,String username, String time, String service, final Context context, final MakeAppointment callback) throws JSONException {
+//
+//        JSONObject params = new JSONObject();
+//        //params.put("password", password);
+//        params.put("username", username);
+//
+//        JsonObjectRequest request = new JsonObjectRequest(
+//                Request.Method.POST, UrlList.login, params, new Response.Listener<JSONObject>() {
+//            @Override
+//            public void onResponse(JSONObject response) {
+//                try {
+//                    if ( response.getBoolean("status") ) {
+//                        JSONObject userData = response.getJSONObject("data");
+//                        UserPreference.getInstance(context).createSession(
+//                                new User(
+//                                        userData.getString("username"),
+//                                        userData.getString("full_name"),
+//                                        userData.getString("no_telp"),
+//                                        userData.getString("email"),
+//                                        response.getString("token")
+//                                )
+//                        );
+//                        callback.onSucceed(response.getString("message"));
+//                    } else {
+//                        callback.onError(response.getString("message"));
+//                    }
+//                } catch (JSONException e) {
+//                    callback.onError("Error while parsing the data.");
+//                }
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                try {
+//                    if ( error.networkResponse.data != null ) {
+//                        try {
+//                            String string = new String( error.networkResponse.data, HttpHeaderParser.parseCharset( error.networkResponse.headers));
+//                            JSONObject json = new JSONObject(string);
+//                            if ( json.getString("message") != null ) {
+//                                callback.onError(json.getString("message"));
+//                            } else {
+//                                callback.onError("Something went wrong");
+//                            }
+//                        } catch (Exception e) {
+//                            callback.onError("Something went wrong");
+//                        }
+//                    } else {
+//                        if ( error.getMessage() != null ) {
+//                            callback.onError(error.getMessage());
+//                        } else {
+//                            if ( error.getLocalizedMessage() != null ) {
+//                                callback.onError(error.getLocalizedMessage());
+//                            } else {
+//                                callback.onError("Something went wrong");
+//                            }
+//                        }
+//                    }
+//                } catch (Exception e) {
+//                    callback.onError("Something went wrong");
+//                }
+//            }
+//        });
+//
+//        ServiceSingleton.getInstance(context).addRequestToQueue(request, TagList.LOGIN_TAG);
+//    }
 
     /**
      * Interface list untuk callback requestnya

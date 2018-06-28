@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.example.orionstark.barberros.controllers.activities.MoreInfoActivity">
+    tools:context="com.example.orionstark.barberros.controllers.activities.BarberInfoActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -24,10 +24,10 @@
             app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed">
 
             <ImageView
+                android:id="@+id/barber_img"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:scaleType="centerCrop"
-
                 android:fitsSystemWindows="true"/>
             <!--android:src="@drawable/next_salon"-->
         </android.support.design.widget.CollapsingToolbarLayout>
@@ -50,11 +50,12 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:background="@color/cardview_light_background">
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/next_salon_logo"
-                    android:layout_marginLeft="10dp"/>
+                <!--<de.hdodenhof.circleimageview.CircleImageView-->
+                    <!--android:id="@+id/logo"-->
+                    <!--android:layout_width="60dp"-->
+                    <!--android:layout_height="60dp"-->
+                    <!--android:src="@drawable/next_salon_logo"-->
+                    <!--android:layout_marginLeft="10dp"/>-->
                 <TextView
                     android:id="@+id/nama_barber"
                     android:layout_width="wrap_content"
@@ -69,12 +70,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="right">
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_marginTop="5dp"
-                       />
-                    <!--android:src="@drawable/favorite"-->
+                    <!--<ImageView-->
+                        <!--android:layout_width="40dp"-->
+                        <!--android:layout_height="40dp"-->
+                        <!--android:layout_marginTop="5dp"-->
+                        <!--android:src="@drawable/fav_barber"-->
+                       <!--/>-->
                 </LinearLayout>
 
             </LinearLayout>
@@ -334,6 +335,7 @@
         </android.support.v7.widget.LinearLayoutCompat>
     </android.support.v4.widget.NestedScrollView>
     <Button
+        android:id="@+id/btn_book"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:text="BOOK NOW"

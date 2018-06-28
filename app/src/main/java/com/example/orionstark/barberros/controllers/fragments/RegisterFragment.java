@@ -107,7 +107,7 @@ public class RegisterFragment extends Fragment {
                         BarberrosService.register(
                                 username.getText().toString(),
                                 pass.getText().toString(),
-                                conf_pass.getText().toString(),
+                                pin.getText().toString(),
                                 email.getText().toString(),
                                 fullname.getText().toString(),
                                 number.getText().toString(),

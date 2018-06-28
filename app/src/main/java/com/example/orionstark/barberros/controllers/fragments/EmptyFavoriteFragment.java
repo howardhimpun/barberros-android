@@ -42,11 +42,11 @@ public class EmptyFavoriteFragment extends Fragment {
             public void onClick(View view) {
                 startActivity(new Intent(getContext(), HomeActivity.class));
                 ((Activity) getContext()).finish();//untuk Sementara WWKKWKWKWK
-                /*getFragmentManager()
-                        .beginTransaction()
-                        .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
-                        .replace(R.id.home_router_outlet, new BarbersFragment())
-                        .commit();*/
+//                getFragmentManager()
+//                        .beginTransaction()
+//                        .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
+//                        .replace(R.id.home_router_outlet, new BarbersFragment())
+//                        .commit();
             }
         });
     }
